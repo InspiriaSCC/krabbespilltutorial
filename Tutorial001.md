@@ -44,9 +44,10 @@ for (let index = 0; index < 4; index++) {
         . c c c c c c . . . . . c c c . 
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(robotKrabbe, assets.tile`transparency16`)
-    robotKrabbe.setVelocity(50, 50)
+    robotKrabbe.setVelocity(randint(-50, 50), randint(-50, 50))
     robotKrabbe.setBounceOnWall(true)
 }
+
 ```
 
 # Lag et krabberobotspill
@@ -117,7 +118,7 @@ for (let index = 0; index < 4; index++) {
         . c c c c c c . . . . . c c c . 
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(robotKrabbe, assets.tile`transparency16`)
-    robotKrabbe.setVelocity(50, 50)
+    robotKrabbe.setVelocity(randint(-50, 50), randint(-50, 50)))
     robotKrabbe.setBounceOnWall(true)
 }
 ```
@@ -170,7 +171,7 @@ for (let index = 0; index < 4; index++) {
         . c c c c c c . . . . . c c c . 
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(robotKrabbe, assets.tile`transparency16`)
-    robotKrabbe.setVelocity(50, 50)
+    robotKrabbe.setVelocity(randint(-50, 50), randint(-50, 50))
     robotKrabbe.setBounceOnWall(true)
 }
 // @highlight
@@ -283,7 +284,7 @@ for (let index = 0; index < 4; index++) {
         . c c c c c c . . . . . c c c . 
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(robotKrabbe, assets.tile`transparency16`)
-    robotKrabbe.setVelocity(50, 50)
+    robotKrabbe.setVelocity(randint(-50, 50), randint(-50, 50))
     robotKrabbe.setBounceOnWall(true)
 }
 // @highlight
@@ -291,7 +292,7 @@ info.startCountdown(10)
 ```
 
 ### Steg 8
-Om du vil gjøre spillet anda vanskeligere, kan du lage flere robotkrabber. Spillet lager bare 4 robotkrabber akkurat nå.
+Om du vil gjøre spillet enda vanskeligere, kan du lage flere robotkrabber. Spillet lager bare 4 robotkrabber akkurat nå.
 Om du endrer tallet 4 øverst i ``||loops:repeat 4 times||``-blokka til et større tall, får du flerer robotkrabber.
 Klarer du å fange 20 på 10 sekunder?
 
@@ -340,71 +341,13 @@ for (let index = 0; index < 20; index++) {
         . c c c c c c . . . . . c c c . 
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(robotKrabbe, assets.tile`transparency16`)
-    robotKrabbe.setVelocity(50, 50)
+    robotKrabbe.setVelocity(randint(-50, 50), randint(-50, 50))
     robotKrabbe.setBounceOnWall(true)
 }
 info.startCountdown(10)
 ```
 
 ### Steg 9
-Om du vil gjøre spillet lettere eller vanskeligere på enda en måte, kan du gjøre noe med farten til robotkrabbene.
-Inni ``||loops:repeat 20 times||``-blokka finner du en blokk som heter ``||sprites:set robotKrabbe velocity to vx 50 vy 50||``.
-Velocity er fart på engelsk, og på programmeringsspråket. Om du setter inn høyere tall (maks er 100) beveger krabbene seg raskere.
-Setter du inn lavere tall her, går krabbene tregere. ``||sprites:vx||`` er farten sidelengs,  ``||sprites:vy||`` er farten oppover og nedover.
-Test spillet med litt forskjellige tall!
-
-```blocks
-let robotKrabbe: Sprite = null
-tiles.setCurrentTilemap(tilemap`level1`)
-scene.setBackgroundColor(7)
-let minRobot = sprites.create(img`
-    . . . . . f f f f . . . . . 
-    . . . f f 5 5 5 5 f f . . . 
-    . . f 5 5 5 5 5 5 5 5 f . . 
-    . f 5 5 5 5 5 5 5 5 5 5 f . 
-    . f 5 5 5 d b b d 5 5 5 f . 
-    f 5 5 5 b 4 4 4 4 b 5 5 5 f 
-    f 5 5 c c 4 4 4 4 c c 5 5 f 
-    f b b f b f 4 4 f b f b b f 
-    f b b 4 1 f d d f 1 4 b b f 
-    . f b f d d d d d d f b f . 
-    . f e f e 4 4 4 4 e f e f . 
-    . e 4 f 6 9 9 9 9 6 f 4 e . 
-    . 4 d c 9 9 9 9 9 9 c d 4 . 
-    . 4 f b 3 b 3 b 3 b b f 4 . 
-    . . f f 3 b 3 b 3 3 f f . . 
-    . . . . f f b b f f . . . . 
-    `, SpriteKind.Player)
-controller.moveSprite(minRobot)
-scene.cameraFollowSprite(minRobot)
-for (let index = 0; index < 20; index++) {
-    robotKrabbe = sprites.create(img`
-        . . . . . . . . . . . c c . . . 
-        . . . . . . . c c c c 6 3 c . . 
-        . . . . . . c 6 3 3 3 3 6 c . . 
-        . . c c . c 6 c c 3 3 3 3 3 c . 
-        . b 5 5 c 6 c 5 5 c 3 3 3 3 3 c 
-        . f f 5 c 6 c 5 f f 3 3 3 3 3 c 
-        . f f 5 c 6 c 5 f f 6 3 3 3 c c 
-        . b 5 5 3 c 3 5 5 c 6 6 6 6 c c 
-        . . b 5 5 3 5 5 c 3 3 3 3 3 3 c 
-        . c c 5 5 5 5 4 c c 3 3 3 3 3 c 
-        c 5 5 4 5 5 4 c 5 5 c 3 3 3 c . 
-        b 5 4 b 4 4 4 c 5 5 5 b c c . . 
-        c 4 5 5 b 4 4 c 5 5 5 c b b . . 
-        c 5 5 5 c 4 c 5 5 5 5 c c 5 b . 
-        c 5 5 5 5 c 4 c c c c c c 5 c . 
-        . c c c c c c . . . . . c c c . 
-        `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(robotKrabbe, assets.tile`transparency16`)
-    // @highlight
-    robotKrabbe.setVelocity(80, 95)
-    robotKrabbe.setBounceOnWall(true)
-}
-info.startCountdown(10)
-```
-
-### Steg 10
 Nå er spillet ditt ferdig! Når du klikker på "Done" får du spørsmål om du vil dele spillet ditt med andre.
 Det velger du selv om du vil gjøre. Du kan også bare krysse ut spørsmålsvinduet og gå videre.
 Etter det kommer du tilbake til spillet ditt, men nå har du tilgang på mange flere kodeblokker!
